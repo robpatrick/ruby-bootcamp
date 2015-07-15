@@ -22,3 +22,4 @@ Use irb to run some of the statements in [runme.rb](./runme.rb)
 1. What sort of object do you get when you run Time.now. (Use the .class method to find out)
 2. What other methods does that returned object have on it? (use the .public_methods method to find out, e.g. Time.now.public_methods)
 3. Use the Time RDoc to find out what extras you get.
+4. Get on with the rest of the course.
