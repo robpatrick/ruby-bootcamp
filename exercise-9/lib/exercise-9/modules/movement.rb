@@ -1,4 +1,5 @@
 module Movement
+
   def move(direction)
     plane,amount = nil, nil
     if  %i{left right}.include?(direction)
@@ -27,5 +28,11 @@ module Movement
 
   def move_backwards
     move :backwards
+  end
+
+  private
+
+  def position
+    @position ||= {longitude: 0, latitude: 0 }
   end
 end
