@@ -1,6 +1,5 @@
-require './lib/exercise-9/modules/speech'
-require './lib/exercise-9/modules/movement'
-require './lib/exercise-9/invalid_direction_exception'
+require_relative 'modules/speech'
+require_relative 'modules/movement'
 
 module Exercise9
   class Person

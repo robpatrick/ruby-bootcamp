@@ -1,3 +1,5 @@
+require_relative 'invalid_direction_exception'
+
 module Movement
 
   def move(direction)
