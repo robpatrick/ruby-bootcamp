@@ -1,0 +1,9 @@
+require 'rspec'
+
+describe Statement do
+
+  it 'should do something' do
+
+    true.should == false
+  end
+end
