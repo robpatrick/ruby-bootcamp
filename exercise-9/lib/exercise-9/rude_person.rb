@@ -6,7 +6,7 @@ class RudePerson
 
   def initialize( name = 'Mike' )
     @name = name
-    @greetings = ['Fuck off', 'Screw you']
+    @greetings = ['F*** off', 'Sc*** you']
   end
 end
 

@@ -2,17 +2,23 @@
 
 Welcome to the Ruby Bootcamp!
 
-Start with the [Course Dashboard](http://prezi.com/adnfktg98mli/?utm_campaign=share&utm_medium=copy&rc=ex0share). This is an interactive presentation that contains the material you will be learning, the exercises to help cement that learning and the suggested flow to go through.
 
-Work through this presentation methodically and when you get to the end you're done :)
+## Getting Started
+
+The course revolves around the [course dashboard](http://prezi.com/adnfktg98mli/?utm_campaign=share&utm_medium=copy&rc=ex0share) presentation. This is an interactive presentation that contains the material you will be learning, the exercises to help cement that learning and the suggested flow to go through.
+
+This repository contains exercises to compliment the presentation flow, which you can work through at your own pace. Once you've completed the presentation and these exercises, you're done!
 
 
 ## Materials
 
 
-### Exercises
+### Dashboard
 
-Copy in here about the exercises.
+You can find the [main course dashboard here](http://prezi.com/adnfktg98mli/?utm_campaign=share&utm_medium=copy&rc=ex0share).
+
+
+### Exercises
 
 * [Exercise 1](exercise-1/readme.md)
 * [Exercise 2](exercise-2/readme.md)
@@ -32,12 +38,16 @@ Copy in here about the exercises.
 
 ### Workshops
 
-Copy in here about the workshops.
-
-* [Logic](workshops/logic/readme.md)
+* [Logical statements](workshops/logical-statements/readme.md)
+* [About blocks](workshops/about-blocks/readme.md)
 * [Building a JSON API wrapper with `Net::HTTP`](workshops/json-api-wrapper/readme.md)
 * [Sinatra Testing with `Rack::Test`](workshops/sinatra-rack-test/readme.md)
 * [Domain Specific Language (DSL)](workshops/domain-specific-language/readme.md)
+
+
+### Projects
+
+* [Twitter user interface](projects/twitter-user-interface/readme.md)
 
 
 ## Notes
