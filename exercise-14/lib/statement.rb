@@ -1,24 +1,31 @@
 require 'json'
-require 'money'
 
 class Statement
 
   def initialize(&block)
+    raise ArgumentError, 'A block must be supplied to this method.' unless block_given?
     instance_eval &block if block_given?
   end
 
   def to_json
 
-    {:generated => Date.today,
-     :due => @due,
-     :period => {:from => @from,
-                 :to => @to },
-     :total => @call_charges.total,
-     :callCharges => { :called => @call_charges.calls[0].telephone_number,
-                       :date => @call_charges.calls[0].call_date,
-                       :duration => @call_charges.calls[0].call_duration,
-                       :cost => @call_charges.calls[0].call_cost}
-    }.to_json
+    calls = Array.new
+
+    @call_charges.calls.each do |call|
+      calls << {:called => call.telephone_number,
+                :date => call.call_date,
+                :duration => call.call_duration,
+                :cost => call.call_cost}
+    end
+
+    {:statement => {
+        :generated => Date.today,
+        :due => @due,
+        :period => {:from => @from,
+                    :to => @to},
+        :total => @call_charges.total,
+        :callCharges => calls
+    }}.to_json
   end
 
   def date(date = nil)
@@ -41,9 +48,6 @@ class Statement
     @to = to_date
   end
 
-  def total
-
-  end
   def call_charges(&block)
     @call_charges = CallCharges.new(&block)
   end
@@ -60,11 +64,11 @@ class CallCharges
   end
 
   def call(telephone_number, &block)
-    @calls.push( Call.new(telephone_number, &block) ) if block_given?
+    @calls.push(Call.new(telephone_number, &block)) if block_given?
   end
 
   def total
-    @calls.map{|call| call.call_cost || 0 }.inject(:+).round(2)
+    @calls.map { |call| call.call_cost || 0 }.inject(:+).round(2)
   end
 
 end
