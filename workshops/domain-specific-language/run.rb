@@ -9,6 +9,7 @@ company do
     end
 
     employee do
+      managing_director
       first_name 'Leon'
       last_name 'Davis'
       role 'Software Engineer'
@@ -34,8 +35,11 @@ company.departments.each do |department|
 
   department.employees.each do |person|
 
-    puts "  #{person.first_name} #{person.last_name}: #{person.role}"
+    puts "#{person.managing_director?}  #{person.first_name} #{person.last_name}: #{person.role}"
 
   end
 
 end
+
+p company.managing_director
+
