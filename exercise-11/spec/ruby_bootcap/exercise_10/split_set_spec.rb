@@ -3,7 +3,6 @@ require 'ruby_bootcamp/exercise_10/split_set'
 module RubyBootcamp
   module Exercise10
     describe SplitSet do
-
       let(:value_1) { OpenStruct.new(id: 1) }
       let(:value_2) { OpenStruct.new(id: 2) }
 
@@ -27,7 +26,6 @@ module RubyBootcamp
           expect(second.lower).to eq(50)
           expect(second.upper).to eq(100)
         end
-
       end
 
       describe '#resolve' do
@@ -64,8 +62,7 @@ module RubyBootcamp
         end
       end
 
-      describe "#valid?" do
-
+      describe '#valid?' do
         context 'splits == to 100' do
           it 'returns true' do
             subject.add id: value_1.id, value: value_1, percentage: 50
@@ -92,6 +89,5 @@ module RubyBootcamp
         end
       end
     end
-
   end
 end
