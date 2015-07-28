@@ -22,7 +22,6 @@ RuboCop::RakeTask.new(:rubocop) do |task|
   task.fail_on_error = true
 end
 
-task :test do
-  Rake::Task['spec'].invoke
-  Rake::Task['rubocop'].invoke
+task :test => [:spec, :rubocop] do
+  puts 'Ran tests.'
 end
