@@ -39,4 +39,11 @@ describe Translator do
         to_return(:status => 500, :body => '')
     expect(subject.translate( 'Socks', to: 'xx' ) ).to eq( 'Socks' )
   end
+
+  it 'expect the cache to be used for the same request' do
+    stub_translate_service(access_token_response, '>Chaussettes<')
+    expect(subject.translate( 'Socks', to: 'fr' ) ).to eq( 'Chaussettes' )
+    WebMock.reset!
+    expect(subject.translate( 'Socks', to: 'fr' ) ).to eq( 'Chaussettes' )
+  end
 end

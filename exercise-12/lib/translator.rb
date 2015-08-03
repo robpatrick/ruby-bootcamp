@@ -11,7 +11,18 @@ class Translator
   SCOPE = 'http://api.microsofttranslator.com'
   GRANT_TYPE = 'client_credentials'
 
+  def initialize
+    @cache = {}
+  end
+
   def translate( phrase, from: 'en', to: )
+    call_translation_service( phrase, from, to )
+  end
+
+  private
+
+  def call_translation_service( phrase, from, to)
+    return @cache[phrase+to] if @cache[phrase+to]
     @access_token = fetch_access_token
     conn = Faraday.new ACCESS_TOKEN_URL
     translate_response = conn.get do |req|
@@ -20,16 +31,10 @@ class Translator
                     :to => to}
       req.headers['Authorization'] = "Bearer #{@access_token['access_token']}"
     end
-    determine_result( translate_response, phrase )
+    translated_phrase = determine_result( translate_response, phrase )
+    @cache[phrase+to] = translated_phrase
+    translated_phrase
   end
-
-
-  def determine_result( translate_response, phrase )
-    phrase = CGI.unescapeHTML(translate_response.body.match(/>(.*)</)[1]) if translate_response.status == 200
-    phrase
-  end
-
-  private
 
   def fetch_access_token
     return @access_token if @access_token and Time.now < @access_token['expires_at']
@@ -43,4 +48,10 @@ class Translator
     access_token['expires_at'] = Time.now + access_token['expires_in'].to_i
     access_token
   end
+
+  def determine_result( translate_response, phrase )
+    phrase = CGI.unescapeHTML(translate_response.body.match(/>(.*)</)[1]) if translate_response.status == 200
+    phrase
+  end
+
 end
