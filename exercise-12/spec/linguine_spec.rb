@@ -8,8 +8,7 @@ end
 
 describe Linguine do
 
-  page_body = '<h1>Hello!</h1>'
-
+  page_body = '<html><head><title>Hello page!!</title></head><body>Hello</body></html>'
   describe '#call' do
 
     it 'expect the page to be translated to german' do
