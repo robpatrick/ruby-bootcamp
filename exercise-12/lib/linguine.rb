@@ -26,7 +26,7 @@ class Linguine
     doc = Nokogiri::HTML.parse(body) { |cfg| cfg.noblanks }
     doc.traverse do |node|
       if node.text?
-        node.content = @translator.translate( node, to: to_language )
+        node.content = @translator.translate( node.content, to: to_language )
       end
     end
     doc.to_s
