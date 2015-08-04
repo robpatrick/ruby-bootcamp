@@ -1,12 +1,8 @@
 require 'faraday'
-
-def mock_translator( subj )
-  translator = double
-  allow(translator).to receive(:translate).and_return('Hallo!')
-  subj.instance_variable_set(:@translator, translator)
-end
+require 'helpers'
 
 describe Linguine do
+  include Helpers
 
   page_body = '<html><head><title>Hello page!!</title></head><body>Hello</body></html>'
   describe '#call' do
