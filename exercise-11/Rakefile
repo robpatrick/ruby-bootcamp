@@ -1,16 +1,12 @@
 require 'rubocop/rake_task'
+
+import 'tasks/files.rake'
+
 begin
   require 'rspec/core/rake_task'
   RSpec::Core::RakeTask.new(:spec)
   task default: :spec
 rescue LoadError
-end
-
-desc 'Lists the contents of a directory, note pattern is optional and will default to *.*'
-task :list, [:path, :pattern] do |_t, args|
-  args.with_defaults(pattern: '*.*')
-  value = `ls #{args['path']}#{args['pattern']} | xargs -n 1 basename`
-  puts value
 end
 
 desc 'Run RuboCop on the lib directory'
