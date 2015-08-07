@@ -11,5 +11,3 @@ class HomePage < Linguine
   end
 
 end
-
-run HomePage.new
