@@ -12,7 +12,7 @@ class RackApp
     if SUPPORTED_PAGES.include?(requested_page.downcase.to_sym)
       clazz = Object.const_get(SUPPORTED_PAGES[requested_page.downcase.to_sym])
       page =  clazz.new
-      return page.call( env )
+      page.call( env )
     else
       ['404', {'Content-Type' => 'text/html'}, ['Page not found.']]
     end
