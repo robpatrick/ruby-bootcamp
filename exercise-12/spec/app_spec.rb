@@ -11,17 +11,37 @@ describe 'Main Rack App' do
     RackApp.new
   end
 
-  it "invalid page should return a page not found" do
+  it 'expect an invalid page to return a page not found' do
     get '/hats.fb'
     expect(last_response.status).to eq(404)
     expect(last_response.body).to eq('Page not found.')
   end
 
-  it "home page should return the home page data" do
+  it 'expect the home page to return translated content' do
     stub_translate_service('>Chaussettes<')
     get '/homepage.fr'
     expect(last_response.status).to eq(200)
     expect(last_response.body).to include('Chaussettes')
   end
 
+  it 'expect the home page to return translated content when entered with mixed case' do
+    stub_translate_service('>Chaussettes<')
+    get '/hOmePagE.fr'
+    expect(last_response.status).to eq(200)
+    expect(last_response.body).to include('Chaussettes')
+  end
+
+  it 'expect the about page to return translated content' do
+    stub_translate_service('>Chaussettes<')
+    get '/about.fr'
+    expect(last_response.status).to eq(200)
+    expect(last_response.body).to include('Chaussettes')
+  end
+
+  it 'expect the about page to return translated content when entered with mixed case' do
+    stub_translate_service('>Chaussettes<')
+    get '/AbOuT.fr'
+    expect(last_response.status).to eq(200)
+    expect(last_response.body).to include('Chaussettes')
+  end
 end
