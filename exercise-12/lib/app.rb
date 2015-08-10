@@ -1,9 +1,10 @@
 require 'rack'
 require_relative './home_page'
+require_relative './about'
 
 class RackApp
 
-  SUPPORTED_PAGES = { :homepage => 'HomePage' }
+  SUPPORTED_PAGES = { :homepage => 'HomePage', :about => 'About' }
 
   def call(env)
     path = env['PATH_INFO']
