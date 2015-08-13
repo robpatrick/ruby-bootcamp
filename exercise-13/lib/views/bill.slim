@@ -1,0 +1,27 @@
+div.page-header
+  h1 Your bill
+
+  div role="tabpanel"
+    / Nav tabs
+    ul class="nav nav-tabs" role="tablist"
+      li role="presentation" class="active"
+        a href="#current" aria-controls="home" role="tab" data-toggle="tab" Current Bill
+      li role="presentation"
+        a href="#previous" aria-controls="previous" role="tab" data-toggle="tab" Previous Bills
+    / Tab panes
+    div.tab-content
+      div role="tabpanel" class="tab-pane active" id="current"
+        div
+          h2 From #{bill.statement.period.from} to #{bill.statement.period.from}
+
+        div
+          h2 Payment due on #{bill.statement.due}
+          span id="total" #{bill.total}
+          /h3 Total: #{bill.total}
+          /h3 Package
+          /  p #{bill.package}
+          /h3 Call Charges
+          /h3 #{bill.callCharges}
+          /h3 Sky Store
+          /  p #{bill.skyStore}
+      div role="tabpanel" class="tab-pane" id="previous" Previous Bills Here

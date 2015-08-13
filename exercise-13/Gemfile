@@ -1,0 +1,8 @@
+# A sample Gemfile
+source "https://rubygems.org"
+
+# gem "rails"
+gem 'sinatra', require: 'sinatra/base'
+gem 'slim'
+gem 'recursive-open-struct'
+gem 'faraday'

@@ -1,15 +1,33 @@
 require 'sinatra'
-
+require 'json'
+require 'recursive-open-struct'
+require 'faraday'
+#
+# Main Application class for exercise-13
+#
 class App < Sinatra::Base
 
-  use Rack::Auth::Basic, "Restricted Area" do |username, password|
-    username == 'admin' and password == 'admin'
+  get '/login' do
+    slim :login
   end
 
-  get '/' do
-    'hello'
+  post '/authenticate' do
+    if params['email'] &&
+       params['password'] &&
+       params['email'] == 'admin@thing.com' &&
+       params['password'] == 'admin'
+      slim :bill, locals: { bill: fetch_bill }
+    else
+      status 401
+      slim :unauthorised
+    end
   end
-  get '/phrase' do
-    'In the kingdom of boredom I wear the royal sweatpants.'
+
+  private
+
+  def fetch_bill
+    response = Faraday.get 'http://localhost:9393/bill'
+    RecursiveOpenStruct.new(eval(response.body), :recurse_over_arrays => true ) if response.status == 200
   end
+
 end
