@@ -29,8 +29,7 @@ describe Translator do
   end
 
   it 'expect invalid language extension to return english' do
-    stub_request(:post, /.*datamarket.accesscontrol.windows.net.*/).
-        to_return(:status => 200, :body => "{\"expires_in\":\"599\"}")
+    stub_translate_service('><h1>Cycling</h1><')
     stub_request(:get, /.*api.microsofttranslator.com.*/).
         to_return(:status => 500, :body => '')
     expect(subject.translate( 'Socks', to: 'xx' ) ).to eq( 'Socks' )
