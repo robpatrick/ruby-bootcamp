@@ -3,8 +3,8 @@ require_relative '../../exercise-12/lib/translator'
 
 class Linguine
 
-  def initialize
-    @translator = Translator.new
+  def initialize( translator )
+    @translator = translator
   end
 
   def call(env)

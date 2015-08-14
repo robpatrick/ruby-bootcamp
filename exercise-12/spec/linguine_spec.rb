@@ -5,6 +5,11 @@ describe Linguine do
   include Helpers
 
   page_body = '<html><head><title>Hello page!!</title></head><body>Hello</body></html>'
+
+  subject do
+    Linguine.new( Translator.new )
+  end
+
   describe '#call' do
 
     it 'expect the page to be translated to german' do
@@ -16,7 +21,7 @@ describe Linguine do
           '<h1>Hello!</h1>'
         end
       end
-      mock_page = MockPage.new
+      mock_page = MockPage.new( Translator.new )
       mock_translator(mock_page)
       result = mock_page.call( {'PATH_INFO' => '/home.de'})
       expect(result[2][0]).to include('Hallo!')
